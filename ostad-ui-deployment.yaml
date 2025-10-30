@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-ui
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: ostad-ui
+  template:
+    metadata:
+      labels:
+        app: ostad-ui
+    spec:
+      containers:
+        - name: ostad-ui
+          image: ostad-ui:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5173
+          command: ["npm", "run", "dev"]
